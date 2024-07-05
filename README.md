@@ -3,7 +3,7 @@ Map
 
 ## Description
 
-A set of simple tools to work with maps.
+A set of simple tools to work with maps.  This includes data sanitization features.
 
 ## Usage
 
