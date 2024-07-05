@@ -47,32 +47,38 @@ func TestEqual(t *testing.T) {
 		}
 	})
 	t.Run("inequality (differing values)", func(t *testing.T) {
-		lhs := make(map[string]int)
-		lhs["1"] = 1
-		lhs["2"] = 2
-		rhs := make(map[string]int)
-		rhs["1"] = 1
-		rhs["2"] = 3
-		if Equal[string, int](&lhs, &rhs) {
-			t.Fatalf("expect lhs and rhs are not equal (size)")
-		}
-		lhs = make(map[string]int)
-		lhs["1"] = 1
-		lhs["2"] = 3
-		rhs = make(map[string]int)
-		rhs["1"] = 1
-		rhs["2"] = 2
-		if Equal[string, int](&lhs, &rhs) {
-			t.Fatalf("expect lhs and rhs are not equal (size)")
-		}
-		lhs = make(map[string]int)
-		lhs["1"] = 1
-		lhs["3"] = 3
-		rhs = make(map[string]int)
-		rhs["1"] = 1
-		rhs["2"] = 2
-		if Equal[string, int](&lhs, &rhs) {
-			t.Fatalf("expect lhs and rhs are not equal (size)")
-		}
+		t.Run("expect lhs and rhs are not equal values(1)", func(t *testing.T) {
+			lhs := make(map[string]int)
+			lhs["1"] = 1
+			lhs["2"] = 2
+			rhs := make(map[string]int)
+			rhs["1"] = 1
+			rhs["2"] = 3
+			if Equal[string, int](&lhs, &rhs) {
+				t.Fail()
+			}
+		})
+		t.Run("expect lhs and rhs are not equal values(2)", func(t *testing.T) {
+			lhs := make(map[string]int)
+			lhs["1"] = 1
+			lhs["2"] = 3
+			rhs := make(map[string]int)
+			rhs["1"] = 1
+			rhs["2"] = 2
+			if Equal[string, int](&lhs, &rhs) {
+				t.Fail()
+			}
+		})
+		t.Run("expect lhs and rhs are not equal values(3)", func(t *testing.T) {
+			lhs := make(map[string]int)
+			lhs["1"] = 1
+			lhs["3"] = 3
+			rhs := make(map[string]int)
+			rhs["1"] = 1
+			rhs["2"] = 2
+			if Equal[string, int](&lhs, &rhs) {
+				t.Fail()
+			}
+		})
 	})
 }
