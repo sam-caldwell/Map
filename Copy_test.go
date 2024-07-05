@@ -6,14 +6,16 @@ import (
 )
 
 func Test_Copy(t *testing.T) {
-	lhs := Map[string, int]{}
-	rhs := Map[string, int]{}
+	lhs := map[string]int{}
+	rhs := map[string]int{}
 	for i := 0; i < 10; i++ {
 		lhs[fmt.Sprintf("%d", i)] = i
 	}
-	Copy[string, int](lhs, rhs)
+	Copy[string, int](&lhs, &rhs)
 	if len(lhs) != len(rhs) {
-		t.Fatal("lhs and rhs are not the same size")
+		t.Fatalf("lhs and rhs are not the same size\n"+
+			"lhs: %v\n"+
+			"rhs: %v", len(lhs), len(rhs))
 	}
 	for i := 0; i < 10; i++ {
 		key := fmt.Sprintf("%d", i)
